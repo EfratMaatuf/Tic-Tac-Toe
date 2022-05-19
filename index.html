@@ -15,14 +15,32 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <div class="navbar">
-      <button class="buttonNewGame">New game</button>
-      <button class="bottonChangeStatus">Change Status</button>
-      <button>Delete</button>
-      <button>Show Record</button>
-      <button class="bottonSaveGame">Save game</button>
-      <button class="bottonLoadGame">Load Game</button>
+
+    <h1 id="TTT" >Tic-Tac-Toe</h1>
+    <div class="players">
+      
+      <label for="name1">x:   </label>
+      <input type="text" name="name1" id="name1" placeholder="enter name..."/>
+    </br>
+    <label for="name2">o:   </label>
+
+      <input type="text" name="name2" id="name2" placeholder="enter name..." />
+
+  </br>
+
+      <button id="submit">start</button>
     </div>
+
+    <div class="navbar">
+      <button id="buttonNewGame" class="btn">New game</button>
+      <button id="bottonChangeStatus" class="btn">Change Status</button>
+      <button id="delete" class="btn" >Delete</button>
+      <button id="peak" class="btn">Show Peak</button>
+      <button id="bottonSaveGame" class="btn">Save game</button>
+      <button id="bottonLoadGame" class="btn">Load Game</button>
+    </div>
+    <!-- <div id="safeTimerDisplay"></div> -->
+    <div id="stopwatch">00:00:00</div>
     <div class="winnerName"></div>
     <div class="noWinner">No winner</div>
     <div class="container">
@@ -46,5 +64,14 @@
       <div class="before"></div>
       <div class="after"></div>
     </div>
+
+    <div id="myModal1" class="modal1">
+      <div class="modal-content">
+        <span class="close" id="close1">&times;</span>
+        <p id="peakshow">Not Peak yet</p>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
