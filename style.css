@@ -1,3 +1,6 @@
+body {
+  overflow: scroll;
+}
 .navbar {
   display: none;
   justify-content: center;

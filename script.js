@@ -111,6 +111,9 @@ const winning = () => {
   console.log(player);
   fireworks.style.display = "block";
   body.style.background = "#000";
+  scroll(0, 0);
+  body.style.overflow = "hidden";
+  console.log(body.style.overflow);
   winnerName.innerText = `${player} is the winner`;
   winnerName.style.display = "block";
   hightRes();
@@ -166,6 +169,7 @@ const newGame = () => {
 
   fireworks.style.display = "none";
   body.style.background = "white";
+  body.style.overflow = "scroll";
   winnerName.style.display = "none";
   noWinner.style.display = "none";
   bottonDelete.addEventListener("click", delete1);
