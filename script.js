@@ -17,7 +17,9 @@ const bottonDelete = document.getElementById("bottonDelete");
 
 const insertNames = () => {
   players.style.display = "none";
-  buildBoard();
+  board.style.display = 'flex';
+  flug == false ? buildBoard() : null;
+  newGame();
   let stoper = document.getElementById("stopwatch");
   stoper.style.display = "flex";
   let buttons = document.querySelector(".navbar");
@@ -138,7 +140,9 @@ const hightRes = () => {
   peakshow.innerHTML = `The peak:  ${peak[0]}, ${peak[1]}, ${peak[2]} steps `;
   console.log(peakshow);
 };
+let flug = false;
 const buildBoard = () => {
+  flug = true;
   for (let i = 0; i < BOARD_SIZE; i++) {
     array[i] = [];
     let divRow = document.createElement("div");
@@ -176,8 +180,18 @@ const newGame = () => {
   resetTimer();
   step = [];
 };
-const saveGame = () => {};
-const loadGame = () => {};
+const newGamebuttom = () => {
+  newGame();
+  players.style.display = "flex";
+  let stoper = document.getElementById("stopwatch");
+  stoper.style.display = "none";
+  let buttons = document.querySelector(".navbar");
+  buttons.style.display = "none";
+  board.style.display = 'none';
+}
+
+const saveGame = () => { };
+const loadGame = () => { };
 function delete1() {
   array[step[0][0][0]][step[0][0][1]] = "";
   let carDelete = document.getElementById(`${step[0][0][0]}${step[0][0][1]}`);
@@ -193,7 +207,7 @@ function delete1() {
 
 // buildBoard();
 let buttonNewGame = document.querySelector("#buttonNewGame");
-buttonNewGame.addEventListener("click", newGame);
+buttonNewGame.addEventListener("click", newGamebuttom);
 
 bottonDelete.addEventListener("click", delete1);
 
