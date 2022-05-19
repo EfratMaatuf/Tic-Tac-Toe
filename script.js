@@ -13,6 +13,7 @@ const board = document.getElementById("board");
 const noWinner = document.querySelector(".noWinner");
 const winnerName = document.querySelector(".winnerName");
 const fireworks = document.querySelector(".fireworks");
+const bottonDelete = document.getElementById("bottonDelete");
 
 const insertNames = () => {
   players.style.display = "none";
@@ -34,18 +35,24 @@ const changeBoard = (e) => {
     e.target.innerText = "❌";
     array[parseInt(e.target.id[0])][parseInt(e.target.id[1])] = "X";
     step.unshift([[e.target.id[0], e.target.id[1]]]);
-    checkWin() ? winning() : null;
+    checkWin() ? winning() : step.length === BOARD_SIZE ** 2 ? teko() : null;
     player = "O";
   } else {
     e.target.innerText = "⭕";
     array[parseInt(e.target.id[0])][parseInt(e.target.id[1])] = "O";
     step.unshift([[e.target.id[0], e.target.id[1]]]);
-    checkWin() ? winning() : null;
+    checkWin() ? winning() : step.length === BOARD_SIZE ** 2 ? teko() : null;
     player = "X";
   }
   e.target.removeEventListener("click", changeBoard);
   e.target.style.cursor = "not-allowed";
   //check if no winning
+};
+const teko = () => {
+  console.log("teko");
+  noWinner.style.display = "block";
+  bottonDelete.removeEventListener("click", delete1);
+  stopTimer();
 };
 const checkWin = () => {
   let i, j;
@@ -108,6 +115,7 @@ const winning = () => {
   winnerName.style.display = "block";
   hightRes();
   console.log(`the winner: ${player} in ${time}`);
+  bottonDelete.removeEventListener("click", delete1);
 };
 const hightRes = () => {
   let a = 0;
@@ -160,8 +168,9 @@ const newGame = () => {
   body.style.background = "white";
   winnerName.style.display = "none";
   noWinner.style.display = "none";
-
+  bottonDelete.addEventListener("click", delete1);
   resetTimer();
+  step = [];
 };
 const saveGame = () => {};
 const loadGame = () => {};
@@ -179,10 +188,10 @@ function delete1() {
 }
 
 // buildBoard();
-let buttonNewGame = document.querySelector(".buttonNewGame");
-buttonNewGame.addEventListener("click", newGame());
+let buttonNewGame = document.querySelector("#buttonNewGame");
+buttonNewGame.addEventListener("click", newGame);
 
-document.getElementById("delete").addEventListener("click", delete1);
+bottonDelete.addEventListener("click", delete1);
 
 const changeStatus = (size) => {
   modal.style.display = "none";
@@ -192,7 +201,7 @@ const changeStatus = (size) => {
   newGame();
   resetTimer();
 };
-let bottonChangeStatus = document.querySelector(".bottonChangeStatus");
+let bottonChangeStatus = document.querySelector("#bottonChangeStatus");
 let modal = document.querySelector(".modal");
 bottonChangeStatus.addEventListener("click", () => {
   modal.style.display = "block";
@@ -218,13 +227,13 @@ buttonBoard6.addEventListener("click", () => {
   changeStatus(6);
 });
 
-let bottonSaveGame = document.querySelector(".bottonSaveGame");
+let bottonSaveGame = document.querySelector("#bottonSaveGame");
 bottonSaveGame.addEventListener("click", saveGame);
 
-let bottonLoadGame = document.querySelector(".bottonLoadGame");
+let bottonLoadGame = document.querySelector("#bottonLoadGame");
 bottonLoadGame.addEventListener("click", loadGame);
 
-let buttonShowPeak = document.querySelector(".peak");
+let buttonShowPeak = document.querySelector("#peak");
 let modal1 = document.querySelector(".modal1");
 buttonShowPeak.addEventListener("click", () => {
   modal1.style.display = "block";
