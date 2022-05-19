@@ -3,6 +3,20 @@
   justify-content: center;
   gap: 20px;
 }
+.winnerName {
+  display: none;
+  display: block;
+  text-align: center;
+  color: antiquewhite;
+  font-size: xxx-large;
+  font-weight: bold;
+}
+.noWinner {
+  display: none;
+  text-align: center;
+  font-size: xxx-large;
+  font-weight: bold;
+}
 .row {
   justify-content: center;
 }
@@ -13,8 +27,6 @@
 .cards {
   border: 2px solid rgb(77, 9, 9);
   box-shadow: 5px 10px 18px #888888;
-  /* margin: 10px; */
-  /* padding: 5px; */
   width: 120px;
   height: 120px;
   background-color: rgb(227, 178, 199);
@@ -25,6 +37,8 @@
   font-family: "Josefin Sans", sans-serif;
   color: floralwhite;
   cursor: pointer;
+  margin: 2px;
+  border-radius: 10px;
 }
 .cards:hover {
   background-color: yellow;
