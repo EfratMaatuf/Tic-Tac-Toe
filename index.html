@@ -15,22 +15,16 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
-
     <h1 id="TTT" >Tic-Tac-Toe</h1>
     <div class="players">
-      
-      <label for="name1">x:   </label>
-      <input type="text" name="name1" id="name1" placeholder="enter name..."/>
-    </br>
-    <label for="name2">o:   </label>
-
-      <input type="text" name="name2" id="name2" placeholder="enter name..." />
-
-  </br>
-
-      <button id="submit">start</button>
+      <label for="name1" class="labelName">Player ❌:   </label>
+      <input type="text" name="name1" id="name1" class="inputName" placeholder="enter name..."/>
+      <br/>
+      <label for="name2" class="labelName">Player ⭕:   </label>
+      <input type="text" name="name2" id="name2" class="inputName" placeholder="enter name..." />
+      <br/>
+      <button id="submit" class="btn btn-outline-danger" type="button">start</button>
     </div>
-
     <div class="navbar">
       <button id="buttonNewGame" class="btn">New game</button>
       <button id="bottonChangeStatus" class="btn">Change Status</button>
@@ -51,12 +45,12 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Change game board</p>
-        <div class="buttonsChangeBoard">
-          <button class="buttonBoard3">3 X 3</button>
-          <button class="buttonBoard4">4 X 4</button>
-          <button class="buttonBoard5">5 X 5</button>
-          <button class="buttonBoard6">6 X 6</button>
+        <p id="PChangeGameBoard">Change game board</p>
+        <div class="divButtonsChangeBoard">
+          <button id="buttonBoard3" class="buttonChangeBoard">3 X 3</button>
+          <button id="buttonBoard4" class="buttonChangeBoard">4 X 4</button>
+          <button id="buttonBoard5" class="buttonChangeBoard">5 X 5</button>
+          <button id="buttonBoard6" class="buttonChangeBoard">6 X 6</button>
         </div>
       </div>
     </div>

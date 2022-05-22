@@ -214,19 +214,19 @@ let close = document.querySelector(".close");
 close.addEventListener("click", () => {
   modal.style.display = "none";
 });
-let buttonBoard3 = document.querySelector(".buttonBoard3");
+let buttonBoard3 = document.querySelector("#buttonBoard3");
 buttonBoard3.addEventListener("click", () => {
   changeStatus(3);
 });
-let buttonBoard4 = document.querySelector(".buttonBoard4");
+let buttonBoard4 = document.querySelector("#buttonBoard4");
 buttonBoard4.addEventListener("click", () => {
   changeStatus(4);
 });
-let buttonBoard5 = document.querySelector(".buttonBoard5");
+let buttonBoard5 = document.querySelector("#buttonBoard5");
 buttonBoard5.addEventListener("click", () => {
   changeStatus(5);
 });
-let buttonBoard6 = document.querySelector(".buttonBoard6");
+let buttonBoard6 = document.querySelector("#buttonBoard6");
 buttonBoard6.addEventListener("click", () => {
   changeStatus(6);
 });

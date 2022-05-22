@@ -123,11 +123,12 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-.buttonsChangeBoard {
+.divButtonsChangeBoard {
   display: flex;
   justify-content: space-around;
 }
-
+.buttonChangeBoard {
+}
 #stopwatch {
   display: none;
 
@@ -139,11 +140,34 @@ body {
 .players {
   margin: 10px;
   justify-content: center;
-  display: flex;
+  text-align: center;
+  margin: 5%;
+}
+.labelName {
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 221%;
+}
+.inputName {
+  border: none;
+  border-bottom: 2px solid red;
+}
+#submit {
+  margin: 3%;
+  font-weight: bold;
+  font-family: system-ui;
+  font-size: 24px;
 }
 #TTT {
   font-size: 50px;
   justify-content: center;
   display: flex;
   color: rgb(77, 9, 9);
+}
+#peakshow {
+  align-self: center;
+  font-family: monospace;
+}
+.PChangeGameBoard {
+  text-align: center;
 }
