@@ -7,7 +7,6 @@ let ifSave = false;
 let flag = false;
 let step = [];
 let playersName = [];
-let peak = ["", "100", 100];
 let players = document.querySelector(".players");
 const body = document.querySelector("body");
 const board = document.getElementById("board");
@@ -141,13 +140,24 @@ const hightRes = () => {
       }
     }
   }
-  if (time < peak[1] || a < peak[2]) {
-    peak[0] = player == "X" ? playersName[0] : playersName[1];
-    peak[1] = time;
-    peak[2] = a;
+  Boolean(localStorage.peak) ? null : localStorage.peak = JSON.stringify({
+    name: "",
+    time: "100",
+    step: 100
+  })
+  if (time < JSON.parse(localStorage.peak).time || a < JSON.parse(localStorage.peak).step) {
+    let namePlayer = player == "X" ? playersName[0] : playersName[1];
+
+    localStorage.peak = JSON.stringify({
+      name: namePlayer,
+      time: time,
+      step: a
+    })
   }
+
+
   let peakshow = document.getElementById("peakshow");
-  peakshow.innerHTML = ` ${peak[0]} | ${peak[1]} | ${peak[2]} steps `;
+  peakshow.innerHTML = ` ${JSON.parse(localStorage.peak).name} | ${JSON.parse(localStorage.peak).time} | ${JSON.parse(localStorage.peak).step} steps `;
   console.log(peakshow);
 };
 const buildBoard = () => {
@@ -160,9 +170,8 @@ const buildBoard = () => {
       array[i][j] = "";
       let cardEl = document.createElement("div");
       cardEl.innerHTML = "❤️";
-      cardEl.className = `cards col-1 col-md-${
-        12 / BOARD_SIZE
-      } animate__animated animate__rollIn animate__delay-2s	`;
+      cardEl.className = `cards col-1 col-md-${12 / BOARD_SIZE
+        } animate__animated animate__rollIn animate__delay-2s	`;
       cardEl.setAttribute("id", `${i}${j}`);
       cardEl.addEventListener("click", changeBoard);
       divRow.append(cardEl);
@@ -204,8 +213,8 @@ const newGamebuttom = () => {
   board.style.display = "none";
 };
 
-const saveGame = () => {};
-const loadGame = () => {};
+const saveGame = () => { };
+const loadGame = () => { };
 function delete1() {
   array[step[0][0][0]][step[0][0][1]] = "";
   let carDelete = document.getElementById(`${step[0][0][0]}${step[0][0][1]}`);
