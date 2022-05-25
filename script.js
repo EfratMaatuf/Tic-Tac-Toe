@@ -27,6 +27,7 @@ const insertNames = () => {
   let player1 = document.getElementById("name1").value;
   let player2 = document.getElementById("name2").value;
   playersName = [player1, player2];
+  body.style.backgroundColor = "rgb(245, 230, 236)";
 };
 let buttonInsertNames = document.getElementById("submit");
 buttonInsertNames.addEventListener("click", insertNames);
@@ -137,7 +138,7 @@ const hightRes = () => {
     peak[2] = a;
   }
   let peakshow = document.getElementById("peakshow");
-  peakshow.innerHTML = `The peak:  ${peak[0]}, ${peak[1]}, ${peak[2]} steps `;
+  peakshow.innerHTML = ` ${peak[0]} | ${peak[1]} | ${peak[2]} steps `;
   console.log(peakshow);
 };
 let flug = false;
@@ -172,7 +173,9 @@ const newGame = () => {
   }
 
   fireworks.style.display = "none";
-  body.style.background = "white";
+  body.style.backgroundColor = "rgb(245, 230, 236)";
+
+
   body.style.overflow = "scroll";
   winnerName.style.display = "none";
   noWinner.style.display = "none";
@@ -182,7 +185,8 @@ const newGame = () => {
 };
 const newGamebuttom = () => {
   newGame();
-  players.style.display = "flex";
+  body.style.background = "rgb(227, 178, 199)";
+  players.style.display = "block";
   let stoper = document.getElementById("stopwatch");
   stoper.style.display = "none";
   let buttons = document.querySelector(".navbar");

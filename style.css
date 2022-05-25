@@ -1,5 +1,6 @@
 body {
   overflow: scroll;
+  background-color: rgb(227, 178, 199);
 }
 .navbar {
   display: none;
@@ -102,11 +103,15 @@ body {
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  background-color: rgb(245, 230, 236);
+
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 40%;
+  font-weight: bold;
+  color:rgb(51, 45, 45);
+  /* text-align: center; */
 }
 
 /* The Close Button */
@@ -125,9 +130,36 @@ body {
 }
 .buttonsChangeBoard {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around;  
 }
+.buttonBoard3,
+.buttonBoard4,
+.buttonBoard5,
+.buttonBoard6 {
+  background-color: rgb(77, 9, 9);
+  border: none;
+  color: white;
+  padding: 4px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2px solid rgb(77, 9, 9);
+  color: white;
 
+}
+.buttonBoard3:hover,
+.buttonBoard4:hover,
+.buttonBoard5:hover,
+.buttonBoard6:hover  {
+  background-color: white;
+  color: black;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 #stopwatch {
   display: none;
 
@@ -137,13 +169,32 @@ body {
   margin-top: 10px;
 }
 .players {
+
+  margin: 20px;
+  text-align: center;
+
+}
+
+#name1{
+  padding: 7px;
   margin: 10px;
-  justify-content: center;
-  display: flex;
+}
+#name2{
+  padding: 7px;
+  margin: 10px;
+}
+
+#submit{
+  margin: 10px;
+  padding: 5px,5px;
+border-radius: 5px;
+background-color: #fefefe;
+
 }
 #TTT {
-  font-size: 50px;
+  font-size: 30px;
   justify-content: center;
   display: flex;
   color: rgb(77, 9, 9);
+  margin: 50px;
 }
