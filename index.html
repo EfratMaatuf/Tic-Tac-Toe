@@ -10,13 +10,17 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="styleFireworks.css" />
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <h1 id="TTT" >Tic-Tac-Toe</h1>
-    <div class="players">
+    <h1  id="TTT" class="animate__animated animate__flip">Tic-Tac-Toe</h1>
+    <div class="players animate__animated  animate__slideInDown">
       <label for="name1" class="labelName">Player ❌:   </label>
       <input type="text" name="name1" id="name1" class="inputName" placeholder="enter name..."/>
       <br/>
@@ -25,8 +29,8 @@
       <br/>
       <button id="submit" class="btn btn-outline-danger" type="button">start</button>
     </div>
-    <div class="navbar">
-      <button id="buttonNewGame" class="btn">New game</button>
+    <div class="navbar animate__animated animate__fadeInUp animate__delay-2s">
+      <button id="buttonNewGame" class="btn " >New game</button>
       <button id="bottonChangeStatus" class="btn">Change Status</button>
       <button id="bottonDelete" class="btn" >Delete</button>
       <button id="peak" class="btn">Show Peak</button>
@@ -34,16 +38,19 @@
       <button id="bottonLoadGame" class="btn">Load Game</button>
     </div>
     <!-- <div id="safeTimerDisplay"></div> -->
-    <div id="stopwatch">00:00:00</div>
-    <div class="winnerName"></div>
+    <div id="stopwatch" class="animate__animated animate__flipInY animate__slower animate__delay-1s">00:00:00</div>
+    <div id="winnerName" class="animate__animated animate__flash" ></div>
     <div class="noWinner">No winner</div>
+    <audio id="audioMistake">
+      <source src="mistake.mp3" type="audio/mpeg">
+    </audio>
     <div class="container">
       <div class="row justify-content-center p-5 p-md-5" id="board"></div>
     </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
-      <div class="modal-content">
+      <div id="popupSizeBoard" class="modal-content  animate__animated animate__zoomIn">
         <span class="close">&times;</span>
         <p id="PChangeGameBoard">Change game board</p>
         <div class="divButtonsChangeBoard">
@@ -58,9 +65,11 @@
       <div class="before"></div>
       <div class="after"></div>
     </div>
-
-    <div id="myModal1" class="modal1">
-      <div class="modal-content">
+    <audio id="audioVictory">
+      <source src="victory.mp3" type="audio/mpeg">
+    </audio>
+    <div id="myModal1" class="modal1" >
+      <div id="popupPeak" class="modal-content animate__animated animate__zoomIn">
         <span class="close" id="close1">&times;</span>
         <p id="peakshow">Not Peak yet</p>
         </div>
