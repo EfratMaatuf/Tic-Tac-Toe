@@ -14,7 +14,7 @@ const board = document.getElementById("board");
 const noWinner = document.querySelector(".noWinner");
 const winnerName = document.querySelector("#winnerName");
 const fireworks = document.querySelector(".fireworks");
-const bottonDelete = document.getElementById("bottonDelete");
+const buttonDelete = document.getElementById("buttonDelete");
 
 const insertNames = () => {
   players.classList.remove("animate__slideInDown");
@@ -60,7 +60,7 @@ const changeBoard = (e) => {
 const teko = () => {
   console.log("teko");
   noWinner.style.display = "block";
-  bottonDelete.removeEventListener("click", delete1);
+  buttonDelete.removeEventListener("click", delete1);
   stopTimer();
   document.querySelector("#audioMistake").play();
 };
@@ -128,7 +128,7 @@ const winning = () => {
   winnerName.style.display = "block";
   hightRes();
   console.log(`the winner: ${player} in ${time}`);
-  bottonDelete.removeEventListener("click", delete1);
+  buttonDelete.removeEventListener("click", delete1);
   document.querySelector("#audioVictory").play();
 };
 const hightRes = () => {
@@ -145,9 +145,9 @@ const hightRes = () => {
     peak[1] = time;
     peak[2] = a;
   }
-  let peakshow = document.getElementById("peakshow");
-  peakshow.innerHTML = `The peak:  ${peak[0]}, ${peak[1]}, ${peak[2]} steps `;
-  console.log(peakshow);
+  let peakShow = document.getElementById("peakShow");
+  peakShow.innerHTML = `The peak:  ${peak[0]}, ${peak[1]}, ${peak[2]} steps `;
+  console.log(peakShow);
 };
 const buildBoard = () => {
   flag = true;
@@ -186,7 +186,7 @@ const newGame = () => {
   body.style.overflow = "scroll";
   winnerName.style.display = "none";
   noWinner.style.display = "none";
-  bottonDelete.addEventListener("click", delete1);
+  buttonDelete.addEventListener("click", delete1);
   resetTimer();
   step = [];
 };
@@ -218,7 +218,7 @@ function delete1() {
 let buttonNewGame = document.querySelector("#buttonNewGame");
 buttonNewGame.addEventListener("click", newGamebuttom);
 
-bottonDelete.addEventListener("click", delete1);
+buttonDelete.addEventListener("click", delete1);
 
 const changeStatus = (size) => {
   BOARD_SIZE = size;
@@ -235,9 +235,9 @@ const changeStatus = (size) => {
     popupSizeBoard.classList.add("animate__zoomIn");
   }, 500);
 };
-let bottonChangeStatus = document.querySelector("#bottonChangeStatus");
+let buttonChangeStatus = document.querySelector("#buttonChangeStatus");
 let modal = document.querySelector(".modal");
-bottonChangeStatus.addEventListener("click", () => {
+buttonChangeStatus.addEventListener("click", () => {
   modal.style.display = "block";
 });
 let close = document.querySelector(".close");
@@ -268,11 +268,11 @@ buttonBoard6.addEventListener("click", () => {
   changeStatus(6);
 });
 
-let bottonSaveGame = document.querySelector("#bottonSaveGame");
-bottonSaveGame.addEventListener("click", saveGame);
+let buttonSaveGame = document.querySelector("#buttonSaveGame");
+buttonSaveGame.addEventListener("click", saveGame);
 
-let bottonLoadGame = document.querySelector("#bottonLoadGame");
-bottonLoadGame.addEventListener("click", loadGame);
+let buttonLoadGame = document.querySelector("#buttonLoadGame");
+buttonLoadGame.addEventListener("click", loadGame);
 
 let buttonShowPeak = document.querySelector("#peak");
 let modal1 = document.querySelector(".modal1");
