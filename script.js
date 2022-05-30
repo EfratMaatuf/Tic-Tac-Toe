@@ -7,7 +7,6 @@ let ifSave = false;
 let flag = false;
 let step = [];
 let playersName = [];
-let peak = ["", "100", 100];
 let players = document.querySelector(".players");
 const body = document.querySelector("body");
 const board = document.getElementById("board");
@@ -34,6 +33,7 @@ const insertNames = () => {
   let player1 = document.getElementById("name1").value;
   let player2 = document.getElementById("name2").value;
   playersName = [player1, player2];
+  body.style.backgroundColor = "rgb(245, 230, 236)";
 };
 let buttonInsertNames = document.getElementById("submit");
 buttonInsertNames.addEventListener("click", insertNames);
@@ -140,13 +140,29 @@ const hightRes = () => {
       }
     }
   }
-  if (time < peak[1] || a < peak[2]) {
-    peak[0] = player == "X" ? playersName[0] : playersName[1];
-    peak[1] = time;
-    peak[2] = a;
+  Boolean(localStorage.peak)
+    ? null
+    : (localStorage.peak = JSON.stringify({
+        name: "",
+        time: "100",
+        step: 100,
+      }));
+  if (
+    time < JSON.parse(localStorage.peak).time ||
+    a < JSON.parse(localStorage.peak).step
+  ) {
+    let namePlayer = player == "X" ? playersName[0] : playersName[1];
+
+    localStorage.peak = JSON.stringify({
+      name: namePlayer,
+      time: time,
+      step: a,
+    });
   }
   let peakShow = document.getElementById("peakShow");
-  peakShow.innerHTML = `The peak:  ${peak[0]}, ${peak[1]}, ${peak[2]} steps `;
+  peakShow.innerHTML = ` ${JSON.parse(localStorage.peak).name} | ${
+    JSON.parse(localStorage.peak).time
+  } | ${JSON.parse(localStorage.peak).step} steps `;
   console.log(peakShow);
 };
 const buildBoard = () => {
@@ -182,7 +198,8 @@ const newGame = () => {
   }
 
   fireworks.style.display = "none";
-  body.style.background = "white";
+  body.style.backgroundColor = "rgb(245, 230, 236)";
+
   body.style.overflow = "scroll";
   winnerName.style.display = "none";
   noWinner.style.display = "none";
@@ -192,7 +209,8 @@ const newGame = () => {
 };
 const newGamebuttom = () => {
   newGame();
-  players.style.display = "flex";
+  body.style.background = "rgb(227, 178, 199)";
+  players.style.display = "block";
   let stoper = document.getElementById("stopwatch");
   stoper.style.display = "none";
   let buttons = document.querySelector(".navbar");
@@ -200,8 +218,54 @@ const newGamebuttom = () => {
   board.style.display = "none";
 };
 
-const saveGame = () => {};
-const loadGame = () => {};
+const saveGame = () => {
+  if (ifSave) {
+    //popup error
+    console.log("error");
+  } else {
+    ifSave = true;
+    saveBoardSize = BOARD_SIZE;
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      saveArray[i] = [];
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        saveArray[i][j] = array[i][j];
+      }
+    }
+    newGame();
+  }
+};
+
+const loadGame = () => {
+  if (ifSave) {
+    board.innerHTML = "";
+    for (let i = 0; i < saveBoardSize; i++) {
+      array[i] = [];
+      let divRow = document.createElement("div");
+      divRow.className = `row`;
+      for (let j = 0; j < saveBoardSize; j++) {
+        array[i][j] = saveArray[i][j];
+        let cardEl = document.createElement("div");
+        if (array[i][j] === "X") {
+          cardEl.innerHTML = "❌";
+        }
+        if (array[i][j] === "O") {
+          cardEl.innerHTML = "⭕";
+        }
+        if (array[i][j] === "") {
+          cardEl.innerHTML = "❤️";
+        }
+        cardEl.className = `cards col-1 col-md-${12 / BOARD_SIZE}`;
+        cardEl.setAttribute("id", `${i}${j}`);
+        cardEl.addEventListener("click", changeBoard);
+        divRow.append(cardEl);
+      }
+      board.append(divRow);
+    }
+  } else {
+    console.log("no game to save");
+  }
+  ifSave = false;
+};
 function delete1() {
   array[step[0][0][0]][step[0][0][1]] = "";
   let carDelete = document.getElementById(`${step[0][0][0]}${step[0][0][1]}`);
