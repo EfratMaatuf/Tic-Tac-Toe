@@ -213,9 +213,49 @@ const newGamebuttom = () => {
   board.style.display = "none";
 };
 
-const saveGame = () => { };
-const loadGame = () => { };
-function delete1() {
+const saveGame = () => {
+  if (ifSave) {
+    //popup error
+    console.log("error");
+  } else {
+    ifSave = true;
+    saveBoardSize = BOARD_SIZE;
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      saveArray[i] = [];
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        saveArray[i][j] = array[i][j];
+      }
+    }
+    newGame();
+  }
+};
+
+const loadGame = () => {
+  if (ifSave) {
+    board.innerHTML = ""
+    for (let i = 0; i < saveBoardSize; i++) {
+      array[i] = [];
+      let divRow = document.createElement("div");
+      divRow.className = `row`;
+      for (let j = 0; j < saveBoardSize; j++) {
+        array[i][j] = saveArray[i][j];
+        let cardEl = document.createElement("div");
+        if (array[i][j] === "X") { cardEl.innerHTML = "❌" }
+        if (array[i][j] === "O") { cardEl.innerHTML = "⭕" }
+        if (array[i][j] === "") { cardEl.innerHTML = "❤️" }
+        cardEl.className = `cards col-1 col-md-${12 / BOARD_SIZE}`;
+        cardEl.setAttribute("id", `${i}${j}`);
+        cardEl.addEventListener("click", changeBoard);
+        divRow.append(cardEl);
+      }
+      board.append(divRow);
+    }
+  }
+  else {
+    console.log("no game to save");
+  }
+  ifSave = false;
+}; function delete1() {
   array[step[0][0][0]][step[0][0][1]] = "";
   let carDelete = document.getElementById(`${step[0][0][0]}${step[0][0][1]}`);
   carDelete.innerHTML = "❤️";
