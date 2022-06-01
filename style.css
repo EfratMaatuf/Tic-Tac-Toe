@@ -110,7 +110,7 @@ body {
   border: 1px solid #888;
   width: 40%;
   font-weight: bold;
-  color:rgb(51, 45, 45);
+  color: rgb(51, 45, 45);
   /* text-align: center; */
 }
 
@@ -130,7 +130,7 @@ body {
 }
 .divButtonsChangeBoard {
   display: flex;
-  justify-content: space-around;  
+  justify-content: space-around;
 }
 .buttonChangeBoard {
   width: 100px;
@@ -147,9 +147,8 @@ body {
   cursor: pointer;
   border: 2px solid rgb(77, 9, 9);
   color: white;
-
 }
-.buttonChangeBoard:hover  {
+.buttonChangeBoard:hover {
   background-color: white;
   color: black;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -164,27 +163,24 @@ body {
   margin-top: 10px;
 }
 .players {
-
   margin: 20px;
   text-align: center;
-
 }
 
-#name1{
+#name1 {
   padding: 7px;
   margin: 10px;
 }
-#name2{
+#name2 {
   padding: 7px;
   margin: 10px;
 }
 
-#submit{
+#submit {
   margin: 10px;
-  padding: 5px,5px;
-border-radius: 5px;
-background-color: #fefefe;
-
+  padding: 5px, 5px;
+  border-radius: 5px;
+  background-color: #fefefe;
 }
 #TTT {
   font-size: 30px;
