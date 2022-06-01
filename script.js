@@ -222,7 +222,22 @@ const newGameButton = () => {
 };
 const saveGame = () => {
   if (localStorage.game) {
-    console.log("error");
+    console.log("error1");
+    let textSaveLoad = document.querySelector("#textSaveLoad");
+    textSaveLoad.innerText = "error1";
+    let modalSaveLoad = document.querySelector("#modalSaveLoad");
+    modalSaveLoad.style.display = "block";
+    let closePopupSaveLoad = document.getElementById("closePopupSaveLoad");
+    closePopupSaveLoad.addEventListener("click", () => {
+      const popupSaveLoad = document.querySelector("#popupSaveLoad");
+      popupSaveLoad.classList.remove("animate__zoomIn");
+      popupSaveLoad.classList.add("animate__zoomOut");
+      setTimeout(() => {
+        modalSaveLoad.style.display = "none";
+        popupSaveLoad.classList.remove("animate__zoomOut");
+        popupSaveLoad.classList.add("animate__zoomIn");
+      }, 500);
+    });
   } else {
     localStorage.game = JSON.stringify(game);
     newGame();
@@ -232,15 +247,14 @@ const saveGame = () => {
 const loadGame = () => {
   newGame();
   if (localStorage.game) {
-    const saveBoardSize = JSON.parse(localStorage.game).BOARD_SIZE;
-    const saveArray = JSON.parse(localStorage.game).array;
+    game = JSON.parse(localStorage.game);
     board.innerHTML = "";
-    for (let i = 0; i < saveBoardSize; i++) {
-      game.array[i] = [];
+    console.log(game.BOARD_SIZE);
+    for (let i = 0; i < game.BOARD_SIZE; i++) {
+      console.log(i);
       let divRow = document.createElement("div");
       divRow.className = `row`;
-      for (let j = 0; j < saveBoardSize; j++) {
-        game.array[i][j] = saveArray[i][j];
+      for (let j = 0; j < game.BOARD_SIZE; j++) {
         let cardEl = document.createElement("div");
         if (game.array[i][j] === "X") {
           cardEl.innerHTML = "❌";
@@ -260,10 +274,43 @@ const loadGame = () => {
     }
     delete localStorage.game;
   } else {
-    console.log("no game to save");
+    console.log("error2");
+    let textSaveLoad = document.querySelector("#textSaveLoad");
+    textSaveLoad.innerText = "error2";
+    let modalSaveLoad = document.querySelector("#modalSaveLoad");
+    modalSaveLoad.style.display = "block";
+    let closePopupSaveLoad = document.getElementById("closePopupSaveLoad");
+    closePopupSaveLoad.addEventListener("click", () => {
+      const popupSaveLoad = document.querySelector("#popupSaveLoad");
+      popupSaveLoad.classList.remove("animate__zoomIn");
+      popupSaveLoad.classList.add("animate__zoomOut");
+      setTimeout(() => {
+        modalSaveLoad.style.display = "none";
+        popupSaveLoad.classList.remove("animate__zoomOut");
+        popupSaveLoad.classList.add("animate__zoomIn");
+      }, 500);
+    });
   }
 };
 function delete1() {
+  if (!game.step.length) {
+    let modalCanNotDelete = document.querySelector("#modalCanNotDelete");
+    modalCanNotDelete.style.display = "block";
+    let closePopupCanNotDelete = document.getElementById(
+      "closePopupCanNotDelete"
+    );
+    closePopupCanNotDelete.addEventListener("click", () => {
+      const popupCanNotDelete = document.querySelector("#popupCanNotDelete");
+      popupCanNotDelete.classList.remove("animate__zoomIn");
+      popupCanNotDelete.classList.add("animate__zoomOut");
+      setTimeout(() => {
+        modalCanNotDelete.style.display = "none";
+        popupCanNotDelete.classList.remove("animate__zoomOut");
+        popupCanNotDelete.classList.add("animate__zoomIn");
+      }, 500);
+    });
+    return;
+  }
   game.array[game.step[0][0][0]][game.step[0][0][1]] = "";
   let carDelete = document.getElementById(
     `${game.step[0][0][0]}${game.step[0][0][1]}`
@@ -303,8 +350,8 @@ let modal = document.querySelector(".modal");
 buttonChangeStatus.addEventListener("click", () => {
   modal.style.display = "block";
 });
-let close = document.querySelector(".close");
-close.addEventListener("click", () => {
+let closePopupSizeBoard = document.querySelector("#closePopupSizeBoard");
+closePopupSizeBoard.addEventListener("click", () => {
   const popupSizeBoard = document.querySelector("#popupSizeBoard");
   popupSizeBoard.classList.remove("animate__zoomIn");
   popupSizeBoard.classList.add("animate__zoomOut");
@@ -337,18 +384,18 @@ buttonSaveGame.addEventListener("click", saveGame);
 let buttonLoadGame = document.querySelector("#buttonLoadGame");
 buttonLoadGame.addEventListener("click", loadGame);
 
-let buttonShowPeak = document.querySelector("#peak");
-let modal1 = document.querySelector(".modal1");
+let modalPeak = document.querySelector("#modalPeak");
+let buttonShowPeak = document.querySelector("#buttonShowPeak");
 buttonShowPeak.addEventListener("click", () => {
-  modal1.style.display = "block";
+  modalPeak.style.display = "block";
 });
-let close1 = document.getElementById("close1");
-close1.addEventListener("click", () => {
+let closePopupPeak = document.getElementById("closePopupPeak");
+closePopupPeak.addEventListener("click", () => {
   const popupPeak = document.querySelector("#popupPeak");
   popupPeak.classList.remove("animate__zoomIn");
   popupPeak.classList.add("animate__zoomOut");
   setTimeout(() => {
-    modal1.style.display = "none";
+    modalPeak.style.display = "none";
     popupPeak.classList.remove("animate__zoomOut");
     popupPeak.classList.add("animate__zoomIn");
   }, 500);

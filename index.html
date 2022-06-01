@@ -19,70 +19,83 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
+    <h1  id="TTT" class="animate__animated animate__flip">Tic-Tac-Toe</h1>
 
-<h1  id="TTT" class="animate__animated animate__flip">Tic-Tac-Toe</h1>
-<div class="players animate__animated  animate__slideInDown">
-      
-    
+    <div class="players animate__animated  animate__slideInDown">
       <input type="text" name="name1" id="name1" placeholder="❌  Enter name...  "/>
-    </br>
-   
-
+      </br>
       <input type="text" name="name2" id="name2" placeholder="⭕   Enter name...   " />
-
-  </br>
-
-  <!-- <button id="submit" class="btn btn-outline-danger" type="button">start</button> -->
-  <button id="submit"  type="button">start</button>
-
-
+      </br>
+      <button id="submit"  type="button">start</button>
     </div>
+
     <div class="navbar animate__animated animate__fadeInUp animate__delay-2s">
       <button id="buttonNewGame" class="btn " >New game</button>
       <button id="buttonChangeStatus" class="btn">Change Status</button>
       <button id="buttonDelete" class="btn" >Delete</button>
-      <button id="peak" class="btn">Show Peak</button>
+      <button id="buttonShowPeak" peak class="btn">Show Peak</button>
       <button id="buttonSaveGame" class="btn">Save game</button>
       <button id="buttonLoadGame" class="btn">Load Game</button>
     </div>
-    <!-- <div id="safeTimerDisplay"></div> -->
+
     <div id="stopwatch" class="animate__animated animate__flipInY animate__slower animate__delay-1s">00:00:00</div>
+    
     <div id="winnerName" class="animate__animated animate__flash" ></div>
     <div class="noWinner">No winner</div>
-    <audio id="audioMistake">
-      <source src="mistake.mp3" type="audio/mpeg">
-    </audio>
+    
     <div class="container">
       <div class="row justify-content-center p-5 p-md-5" id="board"></div>
     </div>
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-    <!-- Modal content -->
+
+    <div id="modalSizeBoard" class="modal">
       <div id="popupSizeBoard" class="modal-content  animate__animated animate__zoomIn">
-        <span class="close">&times;</span>
-        <p id="PChangeGameBoard">Change game board</p>
+        <span id="closePopupSizeBoard" class="close">&times;</span>
+        <p id="PChangeGameBoard" class="textInPopup">Change game board</p>
         <div class="divButtonsChangeBoard">
           <button id="buttonBoard3" class="buttonChangeBoard">3 X 3</button>
           <button id="buttonBoard4" class="buttonChangeBoard">4 X 4</button>
           <button id="buttonBoard5" class="buttonChangeBoard">5 X 5</button>
           <button id="buttonBoard6" class="buttonChangeBoard">6 X 6</button>
+        </div> 
+      </div>
+    </div>
+
+    <div id="modalPeak" class="modal" >
+      <div id="popupPeak" class="modal-content animate__animated animate__zoomIn">
+        <span id="closePopupPeak" class="close" >&times;</span>
+        <p id="peakShow" class="textInPopup">Not Peak yet</p>
         </div>
       </div>
     </div>
+
+    <div id="modalSaveLoad" class="modal" >
+      <div id="popupSaveLoad" class="modal-content animate__animated animate__zoomIn">
+        <span id="closePopupSaveLoad" class="close" >&times;</span>
+        <p id="textSaveLoad" class="textInPopup">Not Peak yet</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalCanNotDelete" class="modal" >
+      <div id="popupCanNotDelete" class="modal-content animate__animated animate__zoomIn">
+        <span id="closePopupCanNotDelete" class="close" >&times;</span>
+        <p id="textCanNotDelete" class="textInPopup">Start playing</p>
+        </div>
+      </div>
+    </div>
+
     <div class="fireworks">
       <div class="before"></div>
       <div class="after"></div>
     </div>
+
+    <audio id="audioMistake">
+      <source src="mistake.mp3" type="audio/mpeg">
+    </audio>
+
     <audio id="audioVictory">
       <source src="victory.mp3" type="audio/mpeg">
     </audio>
-    <div id="myModal1" class="modal1" >
-      <div id="popupPeak" class="modal-content animate__animated animate__zoomIn">
-        <span class="close" id="close1">&times;</span>
-        <p id="peakShow">Not Peak yet</p>
-        </div>
-      </div>
-    </div>
 
   </body>
 </html>
