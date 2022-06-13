@@ -4,6 +4,11 @@ let game = {
   player: "X",
   step: [],
   playersName: [],
+  time: {
+    _hr: 0,
+    _sec: 0,
+    _min: 0
+  }
 };
 let flag = false;
 let players = document.querySelector(".players");
@@ -13,6 +18,7 @@ const noWinner = document.querySelector(".noWinner");
 const winnerName = document.querySelector("#winnerName");
 const fireworks = document.querySelector(".fireworks");
 const buttonDelete = document.getElementById("buttonDelete");
+
 
 const insertNames = () => {
   players.classList.remove("animate__slideInDown");
@@ -46,8 +52,8 @@ const changeBoard = (e) => {
     checkWin()
       ? winning()
       : game.step.length === game.BOARD_SIZE ** 2
-      ? teko()
-      : null;
+        ? teko()
+        : null;
     game.player = "O";
   } else {
     e.target.innerText = "⭕";
@@ -56,8 +62,8 @@ const changeBoard = (e) => {
     checkWin()
       ? winning()
       : game.step.length === game.BOARD_SIZE ** 2
-      ? teko()
-      : null;
+        ? teko()
+        : null;
     game.player = "X";
   }
   e.target.removeEventListener("click", changeBoard);
@@ -127,7 +133,15 @@ const winning = () => {
   body.style.background = "#000";
   scroll(0, 0);
   body.style.overflow = "hidden";
-  winnerName.innerText = `${game.player} is the winner`;
+  if (game.player === 'X' && game.playersName[0] != "") {
+    winnerName.innerText = `${game.playersName[0]} is the winner`;
+  }
+  else if (game.player === 'O' && game.playersName[1] != "") {
+    winnerName.innerText = `${game.playersName[1]} is the winner`;
+  }
+  else {
+    winnerName.innerText = `${game.player} is the winner`;
+  }
   winnerName.style.display = "block";
   hightRes();
   console.log(`the winner: ${game.player} in ${time}`);
@@ -146,10 +160,11 @@ const hightRes = () => {
   Boolean(localStorage.peak)
     ? null
     : (localStorage.peak = JSON.stringify({
-        name: "",
-        time: "100",
-        step: 100,
-      }));
+      name: "",
+      time: "100",
+      step: 100,
+    }));
+
   if (
     time < JSON.parse(localStorage.peak).time ||
     a < JSON.parse(localStorage.peak).step
@@ -163,10 +178,12 @@ const hightRes = () => {
       step: a,
     });
   }
-  let peakShow = document.getElementById("peakShow");
-  peakShow.innerHTML = ` ${JSON.parse(localStorage.peak).name} | ${
-    JSON.parse(localStorage.peak).time
-  } | ${JSON.parse(localStorage.peak).step} steps `;
+
+  // let peakShow = document.getElementById("peakShow");
+  // peakShow.innerHTML = ` ${JSON.parse(localStorage.peak).name} | ${JSON.parse(localStorage.peak).time
+  //   } | ${JSON.parse(localStorage.peak).step} steps `;
+
+
 };
 const buildBoard = () => {
   flag = true;
@@ -178,9 +195,8 @@ const buildBoard = () => {
       game.array[i][j] = "";
       let cardEl = document.createElement("div");
       cardEl.innerHTML = "❤️";
-      cardEl.className = `cards col-1 col-md-${
-        12 / game.BOARD_SIZE
-      } animate__animated animate__rollIn animate__delay-2s	`;
+      cardEl.className = `cards col-1 col-md-${12 / game.BOARD_SIZE
+        } animate__animated animate__rollIn animate__delay-2s	`;
       cardEl.setAttribute("id", `${i}${j}`);
       cardEl.addEventListener("click", changeBoard);
       divRow.append(cardEl);
@@ -209,6 +225,7 @@ const newGame = () => {
   buttonDelete.addEventListener("click", delete1);
   resetTimer();
   game.step = [];
+
 };
 const newGameButton = () => {
   newGame();
@@ -220,29 +237,12 @@ const newGameButton = () => {
   buttons.style.display = "none";
   board.style.display = "none";
 };
+
 const saveGame = () => {
-  if (localStorage.game) {
-    console.log("error1");
-    let textSaveLoad = document.querySelector("#textSaveLoad");
-    textSaveLoad.innerText = "error1";
-    let modalSaveLoad = document.querySelector("#modalSaveLoad");
-    modalSaveLoad.style.display = "block";
-    let closePopupSaveLoad = document.getElementById("closePopupSaveLoad");
-    closePopupSaveLoad.addEventListener("click", () => {
-      const popupSaveLoad = document.querySelector("#popupSaveLoad");
-      popupSaveLoad.classList.remove("animate__zoomIn");
-      popupSaveLoad.classList.add("animate__zoomOut");
-      setTimeout(() => {
-        modalSaveLoad.style.display = "none";
-        popupSaveLoad.classList.remove("animate__zoomOut");
-        popupSaveLoad.classList.add("animate__zoomIn");
-      }, 500);
-    });
-  } else {
-    localStorage.game = JSON.stringify(game);
-    newGame();
-  }
-};
+  localStorage.game = JSON.stringify(game);
+  newGame();
+}
+
 
 const loadGame = () => {
   newGame();
@@ -272,11 +272,9 @@ const loadGame = () => {
       }
       board.append(divRow);
     }
-    delete localStorage.game;
+    upTimer();
   } else {
-    console.log("error2");
     let textSaveLoad = document.querySelector("#textSaveLoad");
-    textSaveLoad.innerText = "error2";
     let modalSaveLoad = document.querySelector("#modalSaveLoad");
     modalSaveLoad.style.display = "block";
     let closePopupSaveLoad = document.getElementById("closePopupSaveLoad");
@@ -388,6 +386,10 @@ let modalPeak = document.querySelector("#modalPeak");
 let buttonShowPeak = document.querySelector("#buttonShowPeak");
 buttonShowPeak.addEventListener("click", () => {
   modalPeak.style.display = "block";
+  let peakShow = document.getElementById("peakShow");
+  peakShow.innerHTML = ` ${JSON.parse(localStorage.peak).name} | ${JSON.parse(localStorage.peak).time
+    } | ${JSON.parse(localStorage.peak).step} steps `;
+
 });
 let closePopupPeak = document.getElementById("closePopupPeak");
 closePopupPeak.addEventListener("click", () => {
@@ -452,6 +454,11 @@ function timerCycle() {
 
     timer.innerHTML = hr + ":" + min + ":" + sec;
 
+    game.time._hr = hr
+    game.time._sec = sec
+    game.time._min = min;
+
+
     setTimeout("timerCycle()", 1000);
   }
 }
@@ -461,4 +468,16 @@ function resetTimer() {
   hr = 0;
   sec = 0;
   min = 0;
+
+  game.time._hr = hr
+  game.time._sec = sec
+  game.time._min = min;
+}
+function upTimer() {
+  timer.innerHTML = `${game.time._hr}:${game.time._min}:${game.time._sec}`;
+
+  stoptime = true;
+  hr = Number(game.time._hr);
+  sec = Number(game.time._sec);
+  min = Number(game.time._min);
 }
