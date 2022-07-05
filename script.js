@@ -474,7 +474,7 @@ function resetTimer() {
   game.time._min = min;
 }
 function upTimer() {
-  timer.innerHTML = `${game.time._hr}:${game.time._min}:${game.time._sec}`;
+  timer.innerHTML = `${game.time._hr} : ${game.time._min} : ${game.time._sec}`;
 
   stoptime = true;
   hr = Number(game.time._hr);
